@@ -1,0 +1,712 @@
+/* ==========================================================
+   ACUÁTICA MAY — Estilos
+   Paleta inspirada en el logo y la alberca:
+   celestes de agua, azul rey del logo y rojo del gorrito
+   ========================================================== */
+
+:root {
+    --azul-rey: #1a63b0;        /* azul de la "M" del logo */
+    --azul: #2e9fd8;            /* azul alberca */
+    --celeste: #8fd6f2;         /* agua clara */
+    --celeste-suave: #eaf7fd;   /* fondo de secciones alternas */
+    --rojo: #e04646;            /* rojo del gorrito del logo */
+    --marino: #103a5e;          /* azul profundo para textos y pie */
+    --texto: #2b3a48;
+    --blanco: #ffffff;
+
+    --fuente-titulos: "Baloo 2", cursive;
+    --fuente-texto: "Quicksand", sans-serif;
+    --fuente-slogan: "Pacifico", cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* que el menú fijo no tape los títulos */
+}
+
+body {
+    font-family: var(--fuente-texto);
+    color: var(--texto);
+    background: var(--blanco);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+}
+
+h1, h2, h3 {
+    font-family: var(--fuente-titulos);
+}
+
+/* ==========================================================
+   ENCABEZADO
+   ========================================================== */
+.encabezado {
+    background: var(--blanco);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(16, 58, 94, 0.1);
+    animation: bajar-suave 0.8s ease both;
+}
+
+@keyframes bajar-suave {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+}
+
+.barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--azul-rey);
+    text-decoration: none;
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.marca em {
+    font-style: normal;
+    color: var(--rojo);
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--celeste);
+    animation: flotar 3s ease-in-out infinite; /* el logo "flota" */
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-5px); }
+}
+
+.navegacion ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
+    list-style: none;
+}
+
+.navegacion a {
+    color: var(--marino);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.45rem 0.8rem;
+    border-radius: 20px;
+    position: relative;
+    transition: color 0.25s;
+}
+
+/* Subrayado animado que crece al pasar el mouse */
+.navegacion a:not(.boton-nav)::after {
+    content: "";
+    position: absolute;
+    left: 0.8rem;
+    right: 0.8rem;
+    bottom: 0.2rem;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--azul);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.navegacion a:not(.boton-nav):hover {
+    color: var(--azul);
+}
+
+.navegacion a:not(.boton-nav):hover::after {
+    transform: scaleX(1);
+}
+
+.boton-nav {
+    background: var(--rojo);
+    color: var(--blanco) !important;
+    transition: transform 0.2s, background 0.25s;
+}
+
+.boton-nav:hover {
+    background: var(--azul-rey);
+    transform: scale(1.08);
+}
+
+/* ==========================================================
+   HERO (portada con agua, burbujas y olas)
+   ========================================================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--blanco);
+    text-align: center;
+    padding: 6rem 1rem 9rem;
+    background: linear-gradient(180deg, var(--celeste) 0%, var(--azul) 55%, var(--azul-rey) 100%);
+    background-size: 100% 200%;
+    animation: agua-viva 12s ease-in-out infinite alternate; /* el agua "respira" */
+}
+
+@keyframes agua-viva {
+    from { background-position: 0% 0%; }
+    to   { background-position: 0% 100%; }
+}
+
+.hero-contenido {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-slogan {
+    font-family: var(--fuente-slogan);
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    color: #ffe9e9;
+    margin-bottom: 0.5rem;
+    animation: aparecer-arriba 0.9s ease 0.2s both;
+}
+
+.hero h1 {
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 15px rgba(16, 58, 94, 0.4);
+    animation: aparecer-arriba 0.9s ease 0.4s both;
+}
+
+.hero h1 span {
+    color: var(--rojo);
+    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.hero-texto {
+    max-width: 620px;
+    margin: 1rem auto 2rem;
+    font-size: 1.15rem;
+    font-weight: 500;
+    animation: aparecer-arriba 0.9s ease 0.6s both;
+}
+
+.hero-botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: aparecer-arriba 0.9s ease 0.8s both;
+}
+
+@keyframes aparecer-arriba {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Burbujas que suben ---------- */
+.burbujas span {
+    position: absolute;
+    bottom: -60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    animation: subir-burbuja linear infinite;
+}
+
+.burbujas span:nth-child(1) { left: 8%;  width: 22px; height: 22px; animation-duration: 8s; }
+.burbujas span:nth-child(2) { left: 18%; width: 12px; height: 12px; animation-duration: 6s;  animation-delay: 2s; }
+.burbujas span:nth-child(3) { left: 30%; width: 30px; height: 30px; animation-duration: 10s; animation-delay: 1s; }
+.burbujas span:nth-child(4) { left: 45%; width: 15px; height: 15px; animation-duration: 7s;  animation-delay: 3s; }
+.burbujas span:nth-child(5) { left: 60%; width: 26px; height: 26px; animation-duration: 9s;  animation-delay: 0.5s; }
+.burbujas span:nth-child(6) { left: 72%; width: 14px; height: 14px; animation-duration: 6.5s; animation-delay: 2.5s; }
+.burbujas span:nth-child(7) { left: 84%; width: 20px; height: 20px; animation-duration: 8.5s; animation-delay: 1.5s; }
+.burbujas span:nth-child(8) { left: 93%; width: 10px; height: 10px; animation-duration: 5.5s; animation-delay: 4s; }
+
+@keyframes subir-burbuja {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    50%  { transform: translateY(-45vh) translateX(15px); }
+    100% { transform: translateY(-90vh) translateX(-15px); opacity: 0; }
+}
+
+/* ---------- Olas animadas al pie del hero ---------- */
+.olas {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 1;
+}
+
+.ola {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat-x;
+    background-size: 1200px 90px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 90' preserveAspectRatio='none'%3E%3Cpath d='M0 55 C200 90 400 15 600 55 C800 90 1000 15 1200 55 L1200 90 L0 90 Z' fill='%23ffffff'/%3E%3C/svg%3E");
+}
+
+.ola-1 {
+    animation: mover-ola 14s linear infinite;
+}
+
+.ola-2 {
+    opacity: 0.5;
+    animation: mover-ola 9s linear infinite reverse;
+}
+
+@keyframes mover-ola {
+    from { background-position-x: 0; }
+    to   { background-position-x: -1200px; }
+}
+
+/* ==========================================================
+   SECCIONES
+   ========================================================== */
+.seccion {
+    padding: 4.5rem 0;
+}
+
+.seccion-alterna {
+    background: var(--celeste-suave);
+}
+
+.seccion h2 {
+    color: var(--azul-rey);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.4rem;
+}
+
+/* Línea ondulada animada bajo cada título */
+.seccion h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 8px;
+    background-repeat: repeat-x;
+    background-size: 40px 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'%3E%3Cpath d='M0 4 Q10 0 20 4 T40 4' fill='none' stroke='%23e04646' stroke-width='2.5'/%3E%3C/svg%3E");
+    animation: mover-onda 3s linear infinite;
+}
+
+@keyframes mover-onda {
+    from { background-position-x: 0; }
+    to   { background-position-x: 40px; }
+}
+
+.parrafo-intro {
+    max-width: 750px;
+    font-size: 1.08rem;
+}
+
+/* ==========================================================
+   ANIMACIONES DE DESPLAZAMIENTO (scroll reveal)
+   Los elementos .revelar / .revelar-izq / .revelar-der
+   comienzan ocultos y el JS les agrega .visible al entrar
+   en pantalla.
+   ========================================================== */
+.revelar,
+.revelar-izq,
+.revelar-der {
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    will-change: opacity, transform;
+}
+
+.revelar      { transform: translateY(40px); }
+.revelar-izq  { transform: translateX(-50px); }
+.revelar-der  { transform: translateX(50px); }
+
+.revelar.visible,
+.revelar-izq.visible,
+.revelar-der.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Aparición escalonada: cada tarjeta/valor entra un poco después */
+.tarjetas > *:nth-child(2),
+.lista-valores > *:nth-child(2) { transition-delay: 0.15s; }
+.tarjetas > *:nth-child(3),
+.lista-valores > *:nth-child(3) { transition-delay: 0.3s; }
+.lista-valores > *:nth-child(4) { transition-delay: 0.45s; }
+.lista-valores > *:nth-child(5) { transition-delay: 0.6s; }
+
+/* Si el usuario tiene "reducir movimiento" activado, se respetan sus ajustes */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+    .revelar, .revelar-izq, .revelar-der { opacity: 1; transform: none; }
+}
+
+/* ==========================================================
+   TARJETAS
+   ========================================================== */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tarjeta {
+    background: var(--blanco);
+    border-radius: 20px;
+    padding: 1.8rem;
+    box-shadow: 0 6px 20px rgba(26, 99, 176, 0.1);
+    border-bottom: 4px solid var(--celeste);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease,
+                opacity 0.7s ease; /* mantiene la transición del reveal */
+}
+
+.tarjeta:hover {
+    transform: translateY(-10px) rotate(-1deg);
+    box-shadow: 0 15px 30px rgba(26, 99, 176, 0.2);
+    border-bottom-color: var(--rojo);
+}
+
+.tarjeta-icono {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    line-height: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Íconos SVG de las tarjetas: trazo de línea que cambia de color al hover */
+.tarjeta-icono svg {
+    width: 48px;
+    height: 48px;
+    fill: none;
+    stroke: var(--azul);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease;
+}
+
+.tarjeta:hover .tarjeta-icono svg {
+    stroke: var(--rojo);
+}
+
+.tarjeta:hover .tarjeta-icono {
+    transform: scale(1.25) rotate(8deg);
+    animation: saltito 0.5s ease;
+}
+
+@keyframes saltito {
+    0%, 100% { transform: scale(1.25) translateY(0); }
+    50%      { transform: scale(1.25) translateY(-8px); }
+}
+
+.tarjeta h3 {
+    color: var(--azul-rey);
+    margin-bottom: 0.6rem;
+    font-size: 1.25rem;
+}
+
+.tarjeta ul {
+    padding-left: 1.2rem;
+}
+
+/* ==========================================================
+   VALORES
+   ========================================================== */
+.lista-valores {
+    list-style: none;
+    display: grid;
+    gap: 0.9rem;
+    max-width: 720px;
+}
+
+.lista-valores li {
+    background: var(--blanco);
+    border-left: 5px solid var(--azul);
+    padding: 0.9rem 1.2rem;
+    border-radius: 0 14px 14px 0;
+    box-shadow: 0 3px 10px rgba(26, 99, 176, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease,
+                opacity 0.7s ease; /* mantiene la transición del reveal */
+}
+
+.lista-valores li:hover {
+    transform: translateX(10px);
+    border-left-color: var(--rojo);
+}
+
+/* ==========================================================
+   UBICACIÓN
+   ========================================================== */
+.direccion {
+    font-style: normal;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--marino);
+    margin-bottom: 0.5rem;
+}
+
+.mapa {
+    margin-top: 1.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(26, 99, 176, 0.2);
+    border: 4px solid var(--blanco);
+    outline: 2px solid var(--celeste);
+}
+
+/* ==========================================================
+   CONTACTO
+   ========================================================== */
+.contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 1rem;
+}
+
+.contacto-datos p {
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Íconos circulares de contacto (teléfono, WhatsApp, redes) */
+.contacto-datos .icono {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    background: var(--celeste-suave);
+    border: 2px solid var(--celeste);
+    border-radius: 50%;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.contacto-datos p:hover .icono {
+    background: var(--celeste);
+    border-color: var(--azul);
+    transform: scale(1.12);
+}
+
+.contacto-datos .icono svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: var(--azul-rey);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.contacto-datos a {
+    color: var(--azul-rey);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px dotted var(--celeste);
+    transition: color 0.25s, border-color 0.25s;
+}
+
+.contacto-datos a:hover {
+    color: var(--rojo);
+    border-bottom-color: var(--rojo);
+}
+
+.contacto-slogan {
+    font-family: var(--fuente-slogan);
+    color: var(--azul);
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+}
+
+.formulario {
+    display: grid;
+    gap: 0.5rem;
+    background: var(--celeste-suave);
+    padding: 1.8rem;
+    border-radius: 20px;
+}
+
+.formulario label {
+    font-weight: 700;
+    color: var(--marino);
+}
+
+.formulario input,
+.formulario textarea {
+    padding: 0.7rem;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    font: inherit;
+    background: var(--blanco);
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    outline: none;
+    border-color: var(--azul);
+    transform: scale(1.02);
+}
+
+/* Aviso que aparece bajo el botón al enviar el formulario */
+.formulario-aviso {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.formulario-aviso.exito {
+    background: #e3f6e8;
+    color: #1d7a3a;
+}
+
+.formulario-aviso.error {
+    background: #fde8e8;
+    color: #b93030;
+}
+
+.formulario-aviso.animar {
+    animation: aparecer-arriba 0.4s ease both;
+}
+
+/* ==========================================================
+   BOTONES
+   ========================================================== */
+.boton {
+    display: inline-block;
+    background: var(--rojo);
+    color: var(--blanco);
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 30px;
+    font-family: var(--fuente-titulos);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(224, 70, 70, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.25s;
+    animation: latido 2.5s ease-in-out infinite; /* pulso suave para llamar la atención */
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.04); }
+}
+
+.boton:hover {
+    background: var(--azul-rey);
+    transform: scale(1.1);
+    box-shadow: 0 10px 22px rgba(26, 99, 176, 0.4);
+    animation: none;
+}
+
+.boton-secundario {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid var(--blanco);
+    box-shadow: none;
+    animation: none;
+}
+
+.boton-secundario:hover {
+    background: var(--blanco);
+    color: var(--azul-rey);
+}
+
+/* ==========================================================
+   PIE DE PÁGINA
+   ========================================================== */
+.pie {
+    background: var(--marino);
+    color: var(--celeste);
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.pie-slogan {
+    font-family: var(--fuente-slogan);
+    margin-top: 0.4rem;
+    color: var(--celeste);
+    opacity: 0.9;
+}
+
+/* ==========================================================
+   BOTÓN "VOLVER ARRIBA"
+   ========================================================== */
+.ir-arriba {
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: var(--azul);
+    color: var(--blanco);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 15px rgba(16, 58, 94, 0.35);
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, background 0.25s;
+    z-index: 90;
+}
+
+.ir-arriba.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.ir-arriba:hover {
+    background: var(--rojo);
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 600px) {
+    .barra {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .hero {
+        padding: 4rem 1rem 8rem;
+    }
+}
